@@ -6,24 +6,20 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 
 class App extends Component {
-  setCategory = (category) => {
-    this.category = category
-    console.log ('category ',this.category)
-  }
-
   render () {
     return (
       <>
         <Router>
           <Navbar setCategory={this.setCategory} />
           <Routes>
-            <Route exact path='/General' element={<NewsComponent pageSize={6} category={'general'}/>} /> 
-            <Route exact path='/Business' element={<NewsComponent pageSize={6} category={'business'}/>} /> 
-            <Route exact path='/Entertainment' element={<NewsComponent pageSize={6} category={'entertainment'}/>} /> 
-            <Route exact path='/Health' element={<NewsComponent pageSize={6} category={'health'}/>} /> 
-            <Route exact path='/Science' element={<NewsComponent pageSize={6} category={'science'}/>} /> 
-            <Route exact path='/Sports' element={<NewsComponent pageSize={6} category={'sports'}/>} /> 
-            <Route exact path='/Technology' element={<NewsComponent pageSize={6} category={'technology'}/>} /> 
+            <Route exact path='/' element={<NewsComponent category={'general'}/>} /> 
+            <Route exact path='/General' element={<NewsComponent category={'general'}/>} /> 
+            <Route exact path='/Business' element={<NewsComponent category={'business'}/>} /> 
+            <Route exact path='/Entertainment' element={<NewsComponent category={'entertainment'}/>} /> 
+            <Route exact path='/Health' element={<NewsComponent category={'health'}/>} /> 
+            <Route exact path='/Science' element={<NewsComponent category={'science'}/>} /> 
+            <Route exact path='/Sports' element={<NewsComponent category={'sports'}/>} /> 
+            <Route exact path='/Technology' element={<NewsComponent category={'technology'}/>} /> 
           </Routes>
         </Router>
       </>
