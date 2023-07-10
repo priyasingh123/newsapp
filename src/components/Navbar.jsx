@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Navbar extends Component {
-    render() {
-        return (
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+const Navbar = () => {
+    return (
+        <>
+            <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">News App</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,9 +36,8 @@ class Navbar extends Component {
                         </ul>
                     </div>
                 </div>
-            </nav>
-        )
-    }
+            </nav></>
+    )
 }
 
 export default Navbar;

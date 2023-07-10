@@ -1,31 +1,33 @@
 import './App.css';
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import Navbar from './components/Navbar.jsx'
 import NewsComponent from './components/NewsComponent';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar';
 
+const App = () => {
+    const apiKey = process.env.REACT_APP_NEWS_API_KEY
+    const [progress, setProgress] = useState (0)
 
-class App extends Component {
-  render () {
     return (
       <>
         <Router>
-          <Navbar setCategory={this.setCategory} />
-          <Routes>
-            <Route exact path='/' element={<NewsComponent category={'general'}/>} /> 
-            <Route exact path='/General' element={<NewsComponent category={'general'}/>} /> 
-            <Route exact path='/Business' element={<NewsComponent category={'business'}/>} /> 
-            <Route exact path='/Entertainment' element={<NewsComponent category={'entertainment'}/>} /> 
-            <Route exact path='/Health' element={<NewsComponent category={'health'}/>} /> 
-            <Route exact path='/Science' element={<NewsComponent category={'science'}/>} /> 
-            <Route exact path='/Sports' element={<NewsComponent category={'sports'}/>} /> 
-            <Route exact path='/Technology' element={<NewsComponent category={'technology'}/>} /> 
+          <LoadingBar color='#f11946' progress={progress} onLoaderFinished={() => setProgress(0)} /><Navbar/><Routes>
+            <Route exact path='/newsapp' element={<NewsComponent apiKey={apiKey} setProgress={setProgress} category={'general'} />} />
+            <Route exact path='/' element={<NewsComponent apiKey={apiKey} setProgress={setProgress} category={'general'} />} />
+            <Route exact path='/General' element={<NewsComponent apiKey={apiKey} setProgress={setProgress} category={'general'} />} />
+            <Route exact path='/Business' element={<NewsComponent apiKey={apiKey} setProgress={setProgress} category={'business'} />} />
+            <Route exact path='/Entertainment' element={<NewsComponent apiKey={apiKey} setProgress={setProgress} category={'entertainment'} />} />
+            <Route exact path='/Health' element={<NewsComponent apiKey={apiKey} setProgress={setProgress} category={'health'} />} />
+            <Route exact path='/Science' element={<NewsComponent apiKey={apiKey} setProgress={setProgress} category={'science'} />} />
+            <Route exact path='/Sports' element={<NewsComponent apiKey={apiKey} setProgress={setProgress} category={'sports'} />} />
+            <Route exact path='/Technology' element={<NewsComponent apiKey={apiKey} setProgress={setProgress} category={'technology'} />} />
           </Routes>
         </Router>
-      </>
+        </>
     )
-  }
 }
+export default App;
 
 // function based component
 /*function App() {
@@ -48,5 +50,3 @@ class App extends Component {
     </div>
   );
 }*/
-
-export default App;
