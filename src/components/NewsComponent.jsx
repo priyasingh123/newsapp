@@ -96,9 +96,7 @@ export default class NewsComponent extends Component {
     // ]
 
     handleDisableNextButtton = () => {
-        console.log('inside next')
         // return true
-        // console.log (this.state.totalResults - this.state.page*20)
         // if (this.state.totalResults - this.state.page*20) { //more news is there
         //     return false
         // }
@@ -107,23 +105,20 @@ export default class NewsComponent extends Component {
         // }
     }
 
+    //newsAPI for developers
     fetchMoreData = async () => {
-        console.log('phele page ', this.state.page)
         this.setState({
             page: this.state.page + 1
         }, async () => {
-            console.log('now page ', this.state.page)
             let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
             let data = await fetch(url)
             let parsedData = await data.json()
             this.setState({ articles: this.state.articles.concat(parsedData.articles), totalResults: parsedData.totalResults }, () => {
-                // console.log ('articles ',this.state.articles)
             })
         })
-
-
     }
 
+    //newsAPI for developers
     fetchData = async () => {
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
         let data = await fetch(url)
@@ -131,8 +126,8 @@ export default class NewsComponent extends Component {
         let parsedData = await data.json()
         this.props.setProgress(70)
         this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults }, () => {
-            // console.log ('articles ',this.state.articles)
         })
+        
         this.props.setProgress(100)
     }
 
@@ -167,7 +162,6 @@ export default class NewsComponent extends Component {
                 <div className="container">
                     <div className='row'>
                         {this.state.articles?.map((element) => {
-                            // console.log (element)
                             return (
                                 <div className='col-md-4 my-3' key={element.url}>
                                     <NewsItemComponent title={element.title?.slice(0, 45)} description={element.description?.slice(0, 88)}

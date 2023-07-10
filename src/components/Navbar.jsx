@@ -14,25 +14,25 @@ class Navbar extends Component {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
                                     {/* <button className="nav-link" onClick={() => this.props.setCategory('general')}>General</button> */}
-                                    <a className="nav-link" href="/General">General</a>
+                                    <a className="nav-link" href="/newsapp/General">General</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/Business">Business</a>
+                                    <a className="nav-link" href="/newsapp/Business">Business</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/Entertainment">Entertainment</a>
+                                    <a className="nav-link" href="/newsapp/Entertainment">Entertainment</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/Health">Health</a>
+                                    <a className="nav-link" href="/newsapp/Health">Health</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/Science">Science</a>
+                                    <a className="nav-link" href="/newsapp/Science">Science</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/Sports">Sports</a>
+                                    <a className="nav-link" href="/newsapp/Sports">Sports</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/Technology">Technology</a>
+                                    <a className="nav-link" href="/newsapp/Technology">Technology</a>
                                 </li>
                             </ul>
                         </div>
