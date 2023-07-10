@@ -97,6 +97,7 @@ const handleDisableNextButtton = () => {
         let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pageSize=${props.pageSize}`
         setPage(page + 1)
         let data = await fetch(url)
+        this.props.setProgress(30)
         let parsedData = await data.json()
         setArticles(articles.concat(parsedData.articles))
         setTotalResults(parsedData.totalResults)
