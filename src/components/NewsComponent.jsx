@@ -113,7 +113,7 @@ export default class NewsComponent extends Component {
             page: this.state.page + 1
         }, async () => {
             console.log('now page ', this.state.page)
-            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=76c30e14f0584cf09bed3f0b213fee1d&page=${this.state.page}&pageSize=${this.props.pageSize}`
+            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
             let data = await fetch(url)
             let parsedData = await data.json()
             this.setState({ articles: this.state.articles.concat(parsedData.articles), totalResults: parsedData.totalResults }, () => {
@@ -125,17 +125,19 @@ export default class NewsComponent extends Component {
     }
 
     fetchData = async () => {
-        console.log('page ', this.state.page)
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=76c30e14f0584cf09bed3f0b213fee1d&page=${this.state.page}&pageSize=${this.props.pageSize}`
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
         let data = await fetch(url)
+        this.props.setProgress(30)
         let parsedData = await data.json()
+        this.props.setProgress(70)
         this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults }, () => {
             // console.log ('articles ',this.state.articles)
         })
+        this.props.setProgress(100)
     }
 
     componentDidMount() {
-        console.log('calling fetchData');
+        this.props.setProgress(10)
         this.fetchData()
     }
 
@@ -158,7 +160,8 @@ export default class NewsComponent extends Component {
     render() {
 
         return (
-            <><h2 className='text-center' style={{ margin: '20px' }}>News App - Daily news bites</h2><InfiniteScroll dataLength={this.state.articles} next={this.fetchMoreData} hasMore={this.state.articles.length < this.state.totalResults}
+            <><h2 className='text-center' style={{ margin: '20px' }}>News App - Daily news bites</h2>
+            <InfiniteScroll dataLength={this.state.articles} next={this.fetchMoreData} hasMore={this.state.articles.length < this.state.totalResults}
                 loader={<Spinner />}
             >
                 <div className="container">

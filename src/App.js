@@ -1,25 +1,38 @@
 import './App.css';
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Navbar from './components/Navbar.jsx'
 import NewsComponent from './components/NewsComponent';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar';
 
 class App extends Component {
-  render () {
+    apiKey = process.env.REACT_APP_NEWS_API_KEY
+    state = {
+      progress: 0
+    }
+
+   setProgress = (progress) => {
+    this.setState({
+      progress: progress
+    })
+  }
+
+  render() {
     return (
       <>
-        <Router>
+        <Router basename='/newsapp'>
+          <LoadingBar color='#f11946' progress={this.state.progress} onLoaderFinished={() => this.setProgress(0)} />
           <Navbar setCategory={this.setCategory} />
           <Routes>
-            <Route exact path='/' element={<NewsComponent category={'general'}/>} /> 
-            <Route exact path='/General' element={<NewsComponent category={'general'}/>} /> 
-            <Route exact path='/Business' element={<NewsComponent category={'business'}/>} /> 
-            <Route exact path='/Entertainment' element={<NewsComponent category={'entertainment'}/>} /> 
-            <Route exact path='/Health' element={<NewsComponent category={'health'}/>} /> 
-            <Route exact path='/Science' element={<NewsComponent category={'science'}/>} /> 
-            <Route exact path='/Sports' element={<NewsComponent category={'sports'}/>} /> 
-            <Route exact path='/Technology' element={<NewsComponent category={'technology'}/>} /> 
+            <Route exact path='/newsapp' element={<NewsComponent apiKey={this.apiKey} setProgress={this.setProgress} category={'general'} />} />
+            <Route exact path='/' element={<NewsComponent apiKey={this.apiKey} setProgress={this.setProgress} category={'general'} />} />
+            <Route exact path='/General' element={<NewsComponent apiKey={this.apiKey} setProgress={this.setProgress} category={'general'} />} />
+            <Route exact path='/Business' element={<NewsComponent apiKey={this.apiKey} setProgress={this.setProgress} category={'business'} />} />
+            <Route exact path='/Entertainment' element={<NewsComponent apiKey={this.apiKey} setProgress={this.setProgress} category={'entertainment'} />} />
+            <Route exact path='/Health' element={<NewsComponent apiKey={this.apiKey} setProgress={this.setProgress} category={'health'} />} />
+            <Route exact path='/Science' element={<NewsComponent apiKey={this.apiKey} setProgress={this.setProgress} category={'science'} />} />
+            <Route exact path='/Sports' element={<NewsComponent apiKey={this.apiKey} setProgress={this.setProgress} category={'sports'} />} />
+            <Route exact path='/Technology' element={<NewsComponent apiKey={this.apiKey} setProgress={this.setProgress} category={'technology'} />} />
           </Routes>
         </Router>
       </>
