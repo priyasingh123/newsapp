@@ -161,7 +161,7 @@ export default class NewsComponent extends Component {
 
         return (
             <><h2 className='text-center' style={{ margin: '20px' }}>News App - Daily news bites</h2>
-            <InfiniteScroll dataLength={this.state.articles} next={this.fetchMoreData} hasMore={this.state.articles.length < this.state.totalResults}
+            <InfiniteScroll dataLength={this.state.articles} next={this.fetchMoreData} hasMore={this.state.articles?.length < this.state.totalResults}
                 loader={<Spinner />}
             >
                 <div className="container">
