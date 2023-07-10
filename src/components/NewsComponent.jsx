@@ -166,7 +166,7 @@ export default class NewsComponent extends Component {
             >
                 <div className="container">
                     <div className='row'>
-                        {this.state.articles.map((element) => {
+                        {this.state.articles?.map((element) => {
                             // console.log (element)
                             return (
                                 <div className='col-md-4 my-3' key={element.url}>
